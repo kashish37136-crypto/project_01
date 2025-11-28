@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Demo - Offline Mesh Communicator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .radar-container {
+            width: 300px;
+            height: 300px;
+            background: rgba(0, 229, 255, 0.1);
+            border-radius: 50%;
+            border: 2px solid var(--secondary-color);
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .radar-sweep {
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(90deg, transparent, rgba(0, 229, 255, 0.5));
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform-origin: bottom left;
+            animation: sweep 2s infinite linear;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 0 10px var(--primary-color);
+            opacity: 0;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes sweep {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-network-wired"></i> OMC</a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="ui-showcase.html">App UI</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="demo.html" class="active">Demo</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" style="height: 50vh;">
+        <div class="container hero-content">
+            <h1>Interactive Demo</h1>
+            <p>Experience the mesh scanning technology.</p>
+        </div>
+    </header>
+
+    <section>
+        <div class="container" style="text-align: center;">
+            <h2>Scanning for Devices...</h2>
+            <div class="radar-container">
+                <div class="radar-sweep"></div>
+                <div class="dot" style="top: 30%; left: 60%; animation-delay: 0.5s;"></div>
+                <div class="dot" style="top: 70%; left: 30%; animation-delay: 1.2s;"></div>
+                <div class="dot" style="top: 20%; left: 40%; animation-delay: 0.8s;"></div>
+            </div>
+            <p style="margin-top: 20px;">3 Devices Found in Range</p>
+            <button class="btn" onclick="alert('Connecting to device...')">Connect</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Offline Mesh Communicator Team. Built for Hackathon.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

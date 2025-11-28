@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - Offline Mesh Communicator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-network-wired"></i> OMC</a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html" class="active">How It Works</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="ui-showcase.html">App UI</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="demo.html">Demo</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" style="height: 60vh;">
+        <div class="container hero-content">
+            <h1>How It Works</h1>
+            <p>Understanding the technology behind offline communication.</p>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="card-grid">
+                <div class="card">
+                    <h3>1. Mesh Networking</h3>
+                    <p>Unlike traditional networks that rely on a central server, a mesh network connects devices
+                        directly to one another. Each phone acts as a node.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Bluetooth LE</h3>
+                    <p>We use Bluetooth Low Energy to discover nearby devices without draining battery. It has a range
+                        of up to 100 meters.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Multi-hop Transfer</h3>
+                    <p>If you want to message someone far away, your message "hops" through other users' phones until it
+                        reaches the recipient.</p>
+                </div>
+                <div class="card">
+                    <h3>4. Offline Discovery</h3>
+                    <p> The app constantly scans for other users with the app installed. When found, they are added to
+                        your local network list.</p>
+                </div>
+                <div class="card">
+                    <h3>5. Local Broadcast</h3>
+                    <p>In emergencies, you can broadcast a message to everyone nearby, useful for SOS alerts.</p>
+                </div>
+                <div class="card">
+                    <h3>6. Encryption</h3>
+                    <p>All private messages are end-to-end encrypted. Intermediate "hop" devices cannot read the content
+                        of the messages they relay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Offline Mesh Communicator Team. Built for Hackathon.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

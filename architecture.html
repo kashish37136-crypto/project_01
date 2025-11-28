@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture - Offline Mesh Communicator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 40px 0;
+        }
+
+        .flow-node {
+            background: var(--bg-card);
+            border: 2px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .flow-node::after {
+            content: '';
+            position: absolute;
+            bottom: -42px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 40px;
+            background: var(--secondary-color);
+        }
+
+        .flow-node:last-child::after {
+            display: none;
+        }
+
+        .flow-node i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-network-wired"></i> OMC</a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="ui-showcase.html">App UI</a></li>
+                <li><a href="architecture.html" class="active">Architecture</a></li>
+                <li><a href="demo.html">Demo</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" style="height: 50vh;">
+        <div class="container hero-content">
+            <h1>Technical Architecture</h1>
+            <p>Under the hood of the mesh network.</p>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="flowchart">
+                <div class="flow-node">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>User Device</h3>
+                    <p>App Initialization</p>
+                </div>
+                <div class="flow-node">
+                    <i class="fab fa-bluetooth"></i>
+                    <h3>BLE Scanning</h3>
+                    <p>Discover Peers</p>
+                </div>
+                <div class="flow-node">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Mesh Routing</h3>
+                    <p>Calculate Best Path</p>
+                </div>
+                <div class="flow-node">
+                    <i class="fas fa-lock"></i>
+                    <h3>Encryption</h3>
+                    <p>AES-256 Packet Encryption</p>
+                </div>
+                <div class="flow-node">
+                    <i class="fas fa-database"></i>
+                    <h3>Local Database</h3>
+                    <p>Store Messages Offline</p>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>Failure Handling</h3>
+                    <p>If a node drops out, the routing algorithm automatically recalculates the next best path to the
+                        destination.</p>
+                </div>
+                <div class="card">
+                    <h3>Battery Optimization</h3>
+                    <p>BLE advertising intervals are adjusted based on battery level. Low battery triggers "Passive
+                        Mode".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Offline Mesh Communicator Team. Built for Hackathon.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

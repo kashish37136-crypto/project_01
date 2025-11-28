@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Showcase - Offline Mesh Communicator</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .phone-mockup {
+            width: 320px;
+            height: 650px;
+            background: #fff;
+            border: 12px solid #e0e0e0;
+            border-radius: 40px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: #e0e0e0;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
+        }
+
+        .screen-content {
+            flex: 1;
+            overflow-y: auto;
+            background: #f5f7fa;
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+        }
+
+        /* Settings UI */
+        .settings-header {
+            padding: 40px 20px 20px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .settings-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+        }
+
+        .setting-item {
+            background: #fff;
+            margin: 15px 20px;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
+
+        .setting-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #fff;
+        }
+
+        .toggle-switch {
+            width: 45px;
+            height: 25px;
+            background: #e0e0e0;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .toggle-switch.active {
+            background: var(--secondary-color);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2.5px;
+            left: 2.5px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            transform: translateX(20px);
+        }
+
+        /* Map UI */
+        .map-container {
+            height: 100%;
+            background: #e3f2fd;
+            position: relative;
+            background-image:
+                linear-gradient(#fff 2px, transparent 2px),
+                linear-gradient(90deg, #fff 2px, transparent 2px);
+            background-size: 40px 40px;
+        }
+
+        .map-pin {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pin-bubble {
+            background: #fff;
+            padding: 8px 12px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            white-space: nowrap;
+        }
+
+        .pin-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .pin-you {
+            top: 60%;
+            left: 40%;
+        }
+
+        .pin-you .pin-dot {
+            background: #2196F3;
+        }
+
+        .pin-target {
+            top: 30%;
+            left: 60%;
+        }
+
+        .pin-target .pin-dot {
+            background: #FF5722;
+            width: 30px;
+            height: 30px;
+        }
+
+        .pin-target .pin-bubble {
+            background: #FF5722;
+            color: #fff;
+        }
+
+        .map-path {
+            position: absolute;
+            top: 35%;
+            left: 45%;
+            width: 100px;
+            height: 150px;
+            border-left: 3px dashed #2196F3;
+            border-bottom: 3px dashed #2196F3;
+            border-radius: 0 0 0 30px;
+            transform: rotate(-10deg);
+            opacity: 0.6;
+        }
+
+        /* Mesh UI */
+        .mesh-node {
+            background: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            position: absolute;
+            width: 100px;
+        }
+
+        .mesh-node i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .mesh-line {
+            position: absolute;
+            height: 2px;
+            background: #ffcc80;
+            z-index: 0;
+        }
+
+        /* Chat UI */
+        .chat-header {
+            padding: 40px 20px 15px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            background: #ddd;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-image: url('https://via.placeholder.com/40');
+            background-size: cover;
+        }
+
+        .message-list {
+            padding: 20px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .message.received {
+            background: #fff;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+
+        .message.sent {
+            background: #2196F3;
+            color: #fff;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+            box-shadow: 0 2px 5px rgba(33, 150, 243, 0.3);
+        }
+
+        .chat-input {
+            padding: 15px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .chat-input input {
+            flex: 1;
+            border: none;
+            background: #f5f7fa;
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-network-wired"></i> OMC</a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="ui-showcase.html" class="active">App UI</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="demo.html">Demo</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero" style="height: 40vh;">
+        <div class="container hero-content">
+            <h1>App UI Showcase</h1>
+            <p>Clean, modern, and intuitive interface design.</p>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+
+                <!-- Settings Screen -->
+                <div class="card" style="text-align: center; background: transparent; box-shadow: none; border: none;">
+                    <h3>Settings</h3>
+                    <div class="phone-mockup">
+                        <div class="phone-notch"></div>
+                        <div class="screen-content">
+                            <div class="settings-header">
+                                <h2>Settings</h2>
+                            </div>
+
+                            <div class="setting-item">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="setting-icon" style="background: #4CAF50;"><i
+                                            class="fas fa-map-marker-alt"></i></div>
+                                    <span>Location Access</span>
+                                </div>
+                                <div class="toggle-switch active"></div>
+                            </div>
+
+                            <div class="setting-item">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="setting-icon" style="background: #2196F3;"><i
+                                            class="fab fa-bluetooth-b"></i></div>
+                                    <span>Bluetooth Perms</span>
+                                </div>
+                                <div class="toggle-switch"></div>
+                            </div>
+
+                            <div class="setting-item">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="setting-icon" style="background: #607D8B;"><i
+                                            class="fas fa-battery-full"></i></div>
+                                    <span>Battery Optimization</span>
+                                </div>
+                                <div class="toggle-switch"></div>
+                            </div>
+
+                            <div class="setting-item">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="setting-icon" style="background: #FF9800;"><i
+                                            class="fas fa-share-alt"></i></div>
+                                    <span>Share Device Name</span>
+                                </div>
+                                <div class="toggle-switch active"></div>
+                            </div>
+
+                            <div class="setting-item">
+                                <div style="display: flex; align-items: center;">
+                                    <div class="setting-icon" style="background: #9C27B0;"><i class="fas fa-lock"></i>
+                                    </div>
+                                    <span>Enable Encryption</span>
+                                </div>
+                                <div class="toggle-switch active"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Screen -->
+                <div class="card" style="text-align: center; background: transparent; box-shadow: none; border: none;">
+                    <h3>Location Tracking</h3>
+                    <div class="phone-mockup">
+                        <div class="phone-notch"></div>
+                        <div class="screen-content">
+                            <div class="map-container">
+                                <div class="map-path"></div>
+
+                                <div class="pin-you">
+                                    <div class="pin-bubble">You</div>
+                                    <div class="pin-dot"></div>
+                                </div>
+
+                                <div class="pin-target">
+                                    <div class="pin-bubble">Last Known Location</div>
+                                    <div class="pin-dot"></div>
+                                    <div
+                                        style="background: rgba(255, 87, 34, 0.2); width: 80px; height: 80px; border-radius: 50%; position: absolute; top: -25px; left: -25px; animation: pulse 2s infinite;">
+                                    </div>
+                                </div>
+
+                                <div
+                                    style="position: absolute; bottom: 20px; left: 20px; background: #fff; padding: 15px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); display: flex; align-items: center;">
+                                    <div
+                                        style="width: 10px; height: 10px; background: #2196F3; border-radius: 50%; margin-right: 10px;">
+                                    </div>
+                                    <span style="font-weight: bold; font-size: 0.9rem;">Distance: 47 meters</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mesh Visualization -->
+                <div class="card" style="text-align: center; background: transparent; box-shadow: none; border: none;">
+                    <h3>Mesh Routing</h3>
+                    <div class="phone-mockup">
+                        <div class="phone-notch"></div>
+                        <div class="screen-content"
+                            style="background: #f0f2f5; display: flex; align-items: center; justify-content: center; position: relative;">
+
+                            <div style="position: absolute; top: 40px; font-weight: bold; font-size: 1.2rem;">Hop
+                                History</div>
+
+                            <!-- Lines -->
+                            <div class="mesh-line"
+                                style="top: 200px; left: 80px; width: 80px; transform: rotate(-30deg);"></div>
+                            <div class="mesh-line"
+                                style="top: 200px; right: 80px; width: 80px; transform: rotate(30deg);"></div>
+
+                            <!-- Nodes -->
+                            <div class="mesh-node"
+                                style="top: 120px; left: 50%; transform: translateX(-50%); border: 2px solid #FF9800;">
+                                <i class="fas fa-mobile-alt" style="color: #FF9800;"></i>
+                                <div style="font-size: 0.8rem; font-weight: bold;">Device B</div>
+                            </div>
+
+                            <div class="mesh-node" style="top: 250px; left: 30px; border: 2px solid #9C27B0;">
+                                <i class="fas fa-mobile-alt" style="color: #9C27B0;"></i>
+                                <div style="font-size: 0.8rem; font-weight: bold;">Device A</div>
+                            </div>
+
+                            <div class="mesh-node" style="top: 250px; right: 30px; border: 2px solid #2196F3;">
+                                <i class="fas fa-mobile-alt" style="color: #2196F3;"></i>
+                                <div style="font-size: 0.8rem; font-weight: bold;">Device C</div>
+                            </div>
+
+                            <div style="position: absolute; bottom: 100px; width: 100%; text-align: center;">
+                                <span
+                                    style="background: #fff; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">Message
+                                    relayed via Device B</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Screen -->
+                <div class="card" style="text-align: center; background: transparent; box-shadow: none; border: none;">
+                    <h3>Secure Chat</h3>
+                    <div class="phone-mockup">
+                        <div class="phone-notch"></div>
+                        <div class="screen-content" style="display: flex; flex-direction: column;">
+                            <div class="chat-header">
+                                <div class="chat-avatar" style="background-color: #ccc;"></div>
+                                <div style="text-align: left;">
+                                    <div style="font-weight: bold;">Contact via Mesh</div>
+                                    <div style="font-size: 0.7rem; color: #888;">Connected</div>
+                                </div>
+                            </div>
+
+                            <div class="message-list">
+                                <div class="message sent">
+                                    Are you nearby?
+                                </div>
+                                <div class="message received">
+                                    Yes, I'm at the shelter.
+                                </div>
+                                <div class="message sent">
+                                    Okay, I'm coming to you.
+                                </div>
+                                <div class="message received">
+                                    Stay safe, signal is weak here.
+                                </div>
+                            </div>
+
+                            <div style="margin-top: auto;">
+                                <div class="chat-input">
+                                    <input type="text" placeholder="Type a message...">
+                                    <div
+                                        style="width: 35px; height: 35px; background: #2196F3; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff;">
+                                        <i class="fas fa-microphone"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Offline Mesh Communicator Team. Built for Hackathon.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <style>
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+
+</html>

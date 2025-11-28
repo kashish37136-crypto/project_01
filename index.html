@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Mesh Communicator - Stay Connected</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-network-wired"></i> OMC</a>
+            <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="how-it-works.html">How It Works</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="ui-showcase.html">App UI</a></li>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="demo.html">Demo</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1>Offline Mesh Communicator</h1>
+            <p>Stay connected when the internet goes dark. A decentralized, Bluetooth-based communication network for
+                emergencies.</p>
+            <a href="#" class="btn pulse-animation">Download APK (Demo)</a>
+            <a href="https://github.com/kashish37136-crypto" class="btn btn-secondary"><i class="fab fa-github"></i>
+                View GitHub</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down fa-2x"></i>
+        </div>
+    </header>
+
+    <!-- Problem Statement -->
+    <section id="problem">
+        <div class="container">
+            <h2>The Problem</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <i class="fas fa-wifi-slash fa-3x" style="color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h3>Internet Shutdowns</h3>
+                    <p>During riots or government orders, internet access is often cut off, leaving citizens isolated.
+                    </p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-house-damage fa-3x" style="color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h3>Natural Disasters</h3>
+                    <p>Floods and earthquakes can destroy cell towers, making standard communication apps useless.</p>
+                </div>
+                <div class="card">
+                    <i class="fas fa-users-slash fa-3x" style="color: var(--primary-color); margin-bottom: 20px;"></i>
+                    <h3>Communication Blackout</h3>
+                    <p>People cannot contact families or emergency services when they need it most.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Overview -->
+    <section id="solution">
+        <div class="container">
+            <h2>The Solution</h2>
+            <p>We create a local mesh network using Bluetooth Low Energy (BLE). Messages hop from device to device until
+                they reach the destination, no internet required.</p>
+            <div class="card-grid">
+                <div class="card">
+                    <h3><i class="fab fa-bluetooth-b"></i> Bluetooth Mesh</h3>
+                    <p>Uses standard phone hardware to create a network.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-shield-alt"></i> Encrypted</h3>
+                    <p>End-to-end encryption ensures your messages stay private.</p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-map-marker-alt"></i> Offline Maps</h3>
+                    <p>Share last known locations even without GPS data.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Offline Mesh Communicator Team. Built for Hackathon.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
